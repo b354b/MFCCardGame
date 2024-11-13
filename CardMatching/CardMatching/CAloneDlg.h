@@ -21,8 +21,6 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
 	DECLARE_MESSAGE_MAP()
-<<<<<<< Updated upstream
-=======
 
 	// 구현입니다.
 protected:
@@ -42,6 +40,4 @@ public:
 	afx_msg void OnBnClickedButtonHint();
 	afx_msg void OnClose();
 	afx_msg bool IsGameComplete();
-
->>>>>>> Stashed changes
 };

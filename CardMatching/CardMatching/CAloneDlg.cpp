@@ -15,7 +15,25 @@ IMPLEMENT_DYNAMIC(CAloneDlg, CDialogEx)
 CAloneDlg::CAloneDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_ALONE_DIALOG, pParent)
 {
+	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
+	srand((unsigned int)time(NULL));
+
+	for (int i = 0; i < 36; i++)
+	{
+		m_game_table[i] = i % 18;
+	}
+
+	int first_choice, second_choice, temp;
+	for (int i = 0; i < 35; i++)
+	{
+		first_choice = rand() % 36;
+		second_choice = rand() % 36;
+
+		temp = m_game_table[first_choice];
+		m_game_table[first_choice] = m_game_table[second_choice];
+		m_game_table[second_choice] = temp;
+	}
 }
 
 CAloneDlg::~CAloneDlg()
@@ -29,12 +47,17 @@ void CAloneDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CAloneDlg, CDialogEx)
+	ON_WM_PAINT()
+	ON_WM_QUERYDRAGICON()
+	ON_WM_TIMER()
+	ON_WM_LBUTTONDOWN()
+	ON_BN_CLICKED(IDC_BUTTON_HINT, &CAloneDlg::OnBnClickedButtonHint)
+
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
 // CAloneDlg 메시지 처리기
-<<<<<<< Updated upstream
-=======
 
 // CCardMatchingDlg 메시지 처리기
 
@@ -218,5 +241,3 @@ void CAloneDlg::OnClose()
 	CDialogEx::OnClose();
 
 }
-
->>>>>>> Stashed changes
